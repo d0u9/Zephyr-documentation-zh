@@ -17,6 +17,7 @@ Zephyr项目是为资源受限的多种计算机架构所设计的一个微型�
 ## 目录
 
 * [前言](README.md)
+* [准备开始](getting_started/README.md)
 
 ## 本翻译项目的初衷
 
