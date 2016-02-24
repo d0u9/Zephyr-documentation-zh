@@ -20,7 +20,7 @@ Zephyr项目是为资源受限的多种计算机架构所设计的一个微型�
 * [准备开始](getting_started/README.md)
     * [Zephyr项目介绍](getting_started/introduction_to_the_zephyr_project.md)
     * [Zephyr入门指南](getting_started/getting_started_guide/README.md)
-    * [搭建和配置Zephyr开发环境](getting_started/getting_started_guide/setting_up_for_zephyr_development.md)
+        * [搭建和配置Zephyr开发环境](getting_started/getting_started_guide/setting_up_for_zephyr_development.md)
 
 ## 本翻译项目的初衷
 
