@@ -51,7 +51,60 @@ $ make install
 
 ## 配置工具链
 
-## 创建一个大小写敏感的文件系统
+### 创建一个大小写敏感的文件系统
 
+在Zephyr内核源码树中，我们为ARM和X86平台提供了两种配置方案用以提前确定在编译工具链时的可选项。配置文件能在`$ZEPHYR_BASE/scripts/cross_compiler/`中找到。
 
+```
+$ cp ${ZEPHYR_BASE}/scripts/cross_compiler/x86.config .config
+```
+
+使用配置菜单可，用户可以自定义已存在的配置或创建新的配置。
+
+```
+$ ct-ng menuconfig
+```
+
+### 验证工具链的配置
+
+在开始构建工具链之前，我们建议进行一个快速的工具链配置验证。
+
+1. 打开生成的`.config`文件。
+2. 确保以下内容在配置文件中存在，假设镜像挂载点为`/Volumes/CrossToolNG`：
+
+```
+...
+CT_LOCAL_TARBALLS_DIR="/Volumes/CrossToolNG/src"
+# CT_SAVE_TARBALLS is not set
+CT_WORK_DIR="${CT_TOP_DIR}/.build"
+CT_PREFIX_DIR="/Volumes/CrossToolNG/x-tools/${CT_TARGET}"
+CT_INSTALL_DIR="${CT_PREFIX_DIR}"
+...
+```
+
+### 构建工具链
+
+输入以下命令开始构建工具链：
+
+```
+$ ct-ng build
+```
+
+上述指令的执行可能会花费一些时间。当执行结束时，你可以在`/Volumes/CrossToolNG/x-tools`目录下找到构建完成的工具链。如果你需要支持不同架构的工具链，为所有的架构重复执行上述命令。
+
+为了使用Zephy工具链，需要设置如下的环境变量，并且使用安装位置的工具链：
+
+```
+$ export ZEPHYR_GCC_VARIANT=xtools
+$ export ZEPHYR_SDK_INSTALL_DIR=/Volumes/CrossToolNG/x-tools
+```
+
+如果要在未来的会话中使用相同的工具链，可以在文件`$HOME/.zephyrrc`中设置环境变量，例如：
+
+```
+$ cat <<EOF > ~/.zephyrrc
+export ZEPHYR_SDK_INSTALL_DIR=/Volumes/CrossToolNG/x-tools
+export ZEPHYR_GCC_VARIANT=xtools
+EOF
+```
 
