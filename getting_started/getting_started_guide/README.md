@@ -4,7 +4,7 @@
 
 * [搭建和配置Zephyr开发环境](setting_up_for_zephyr_development.md)
 * [开发Zephyr应用](developing_zephyr_applications.md)
-* 建立和运行一个Zephyr应用
+* [建立和运行一个Zephyr应用](building_and_running_an_application.md)
 
 ## 配置网络和代理
 
