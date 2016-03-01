@@ -3,7 +3,7 @@
 使用本指南开始使用Zephyr进行开发。我们收集了你所需的所有过程并将其分为一下三类：
 
 * [搭建和配置Zephyr开发环境](setting_up_for_zephyr_development.md)
-* 开发Zephyr应用
+* [开发Zephyr应用](developing_zephyr_applications.md)
 * 建立和运行一个Zephyr应用
 
 ## 配置网络和代理
