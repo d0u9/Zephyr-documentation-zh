@@ -6,4 +6,5 @@
     * [开发Zephyr应用](getting_started_guide/developing_zephyr_applications.md)
     * [构建和运行Zephyr应用](getting_started_guide/building_and_running_an_application.md)
 * [Zephyr基础](zephyr_kernel_primer/README.md)
+    * [总览](zephyr_kernel_primer/overview.md)
 
