@@ -4,3 +4,4 @@
 
 - [总览](overview.md)
     - [系统基础](system_fundamentals.md)
+    - [内核基础](kernel_fundamentals.md)
