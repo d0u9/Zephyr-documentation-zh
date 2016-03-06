@@ -30,4 +30,91 @@
 
 > Note：使用更高的系统时钟频率额允许系统时钟提供颗粒更细的时间，但是也同样增加了内核处理滴答数的工作量（由于它们出现的更加频繁）。
 
+### 示例：使用正常精度来计量时间
+
+下面的代码使用系统时钟来确定在一段时间中有多少时钟滴答。
+
+```
+int64_t time_stamp;
+int64_t ticks_spent;
+
+/* capture initial time stamp */
+time_stamp = sys_tick_get();
+
+/* do work for some (extended) period of time */
+...
+
+/* compute how long the work took & update time stamp */
+ticks_spent = sys_tick_delta(&time_stamp);
+```
+
+### 示例：高精度时间计量
+
+下面的代码使用硬件时钟来确定在一段时间中有多少始终滴答。
+
+```
+uint32_t start_time;
+uint32_t stop_time;
+uint32_t cycles_spent;
+uint32_t nanoseconds_spent;
+
+/* capture initial time stamp */
+start_time = sys_cycle_get_32();
+
+/* do work for some (short) period of time */
+...
+
+/* capture final time stamp */
+stop_time = sys_cycle_get_32();
+
+/* compute how long the work took (assumes no counter rollover) */
+cycles_spent = stop_time - start_time;
+nanoseconds_spent = SYS_CLOCK_HW_CYCLES_TO_NS(cycles_spent);
+```
+
+## API
+
+下面的内核时钟API在`microkernel.h`头文件中导出：
+
+`sys_tick_get()`，`sys_tick_get_32()`
+
+读取系统时钟。
+
+`sys_tick_delta()`,`sys_tick_delta_32()`
+
+计算从上次读取系统时钟到现在所经过的时间。
+
+
+下面的内核时钟API由`microkernel.h`和`nanokernel.h`导出：
+
+`sys_tick_get()`，`sys_tick_get_32()`
+
+读取系统时钟。
+
+`sys_tick_delta()`,`sys_tick_delta_32()`
+
+计算从上次读取系统时钟到现在所经过的时间。
+
+`sys_cycle_get_32()`
+
+读取硬件时钟。
+
+下面的内核时钟变量由`microkernel.h`和`nanokernel.h`导出。
+
+`sys_clock_ticks_per_sec`
+
+一秒内的系统时钟滴答数。
+
+`sys_clock_hw_cycles_per_sec`
+
+一秒内的硬件时钟周期数。
+
+`sys_clock_us_per_tick`
+
+一个系统时钟滴答内的微秒数。
+
+`sys_clock_hw_cycles_per_tick`
+
+一个系统时钟滴答内的硬件时钟周期数。
+
 
