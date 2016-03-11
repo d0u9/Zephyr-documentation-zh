@@ -12,7 +12,7 @@ Zephyr支持一种32位的原子数据类型，既`atomic_t`类型。这种类�
 
 ## 使用方法
 
-示例：实现一个不会被打断的计数器
+### 示例：实现一个不会被打断的计数器
 
 下面的代码用来展示了函数如何统计自己已经被调用的次数。由于计数是自动自增的，不存在由于调用相同函数的高优先级任务被调度导致的递增中间被打断的风险。
 
@@ -29,8 +29,75 @@ int call_counting_routine(void)
 }
 ```
 
+## API
 
+以下的原子操作API在atomic.h中导出。
 
+`atomic_get()`
 
+读原子操作变量。
 
+`atomic_set()`
+
+写远在操作变量。
+
+`atomic_clear()`
+
+将原子操作变量清零。
+
+`atomic_add()`
+
+对原子操作变量进行加操作。
+
+atomic_sub()
+
+对原子操作变量进行减操作。
+
+atomic_inc()
+
+对原子操作变量进行自增1。
+
+atomic_dec()
+
+对原子操作变量进行自减1。
+
+atomic_and()
+
+对原子操作变量进行与运算。
+
+atomic_or()
+
+对原子操作变量进行或运算。
+
+atomic_xor()
+
+对原子操作变量进行异或运算。
+
+atomic_nand()
+
+对原子操作变量进行与非运算。
+
+atomic_cas()
+
+对原子操作变量进行Test-and-Set操作。
+
+atomic_set_bit()
+
+将原子操作变量的特定位置1。
+
+atomic_clear_bit()
+
+将原子操作变量的特定位置0。
+
+atomic_test_bit()
+
+读取原子操作变量的特定位。
+
+atomic_test_and_set_bit()
+
+读取原子操作变量的特定位并将其置1。
+
+atomic_test_and_clear_bit()
+
+读取原子操作变量的特定位并将其置0。
 
