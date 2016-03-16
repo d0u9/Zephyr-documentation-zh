@@ -31,7 +31,7 @@ int call_counting_routine(void)
 
 ## API
 
-以下的原子操作API在atomic.h中导出。
+以下的原子操作API在`atomic.h`中导出。
 
 `atomic_get()`
 
@@ -49,55 +49,55 @@ int call_counting_routine(void)
 
 对原子操作变量进行加操作。
 
-atomic_sub()
+`atomic_sub()`
 
 对原子操作变量进行减操作。
 
-atomic_inc()
+`atomic_inc()`
 
 对原子操作变量进行自增1。
 
-atomic_dec()
+`atomic_dec()`
 
 对原子操作变量进行自减1。
 
-atomic_and()
+`atomic_and()`
 
 对原子操作变量进行与运算。
 
-atomic_or()
+`atomic_or()`
 
 对原子操作变量进行或运算。
 
-atomic_xor()
+`atomic_xor()`
 
 对原子操作变量进行异或运算。
 
-atomic_nand()
+`atomic_nand()`
 
 对原子操作变量进行与非运算。
 
-atomic_cas()
+`atomic_cas()`
 
 对原子操作变量进行Test-and-Set操作。
 
-atomic_set_bit()
+`atomic_set_bit()`
 
 将原子操作变量的特定位置1。
 
-atomic_clear_bit()
+`atomic_clear_bit()`
 
 将原子操作变量的特定位置0。
 
-atomic_test_bit()
+`atomic_test_bit()`
 
 读取原子操作变量的特定位。
 
-atomic_test_and_set_bit()
+`atomic_test_and_set_bit()`
 
 读取原子操作变量的特定位并将其置1。
 
-atomic_test_and_clear_bit()
+`atomic_test_and_clear_bit()`
 
 读取原子操作变量的特定位并将其置0。
 
