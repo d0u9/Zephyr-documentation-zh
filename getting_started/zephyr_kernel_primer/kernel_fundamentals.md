@@ -15,3 +15,5 @@ Zephyr能够使用微内核和纳内核开发，也可以仅采用纳内核。
 相关章节：
 
 * [常用内核服务](common_kernel_services.md)
+* [纳内核服务](nanokernel_services.md)
+
