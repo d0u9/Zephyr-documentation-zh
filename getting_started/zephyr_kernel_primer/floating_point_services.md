@@ -44,5 +44,58 @@ Zephyr的内核允许应用的任务或线在支持浮点寄存器的板卡配�
 
 如果任务或线对浮点寄存器的使用并不频繁，能够通过调用`task_float_disable()`或`fiber_float_disable()`函数来移除自身的FPU用户或SSE用户标记。这样在内核进行上线文切换时就消除了本来就无用的保存浮点寄存器内容的步骤。当线程再次需要使用浮点寄存器时，它能够通过使用上面提到的方法，重新标记自身位FPU用户或SSE用户。
 
+## 目的
 
+当应用需要执行浮点数操作时采用内核浮点服务。
+
+## 使用方法
+
+### 配置浮点服务
+
+配置非共享FP寄存器模式，需要开启`FLOAT`配置选项并禁用`FP_SHARING`配置选项。
+
+配置共享FP寄存器模式，需同时开启`FLOAT`配置选项和`FP_SHARING`配置选项。此外，还需要保证任何使用浮点寄存器的任务包含有足够的额外栈空间在进行上下文切换时用来保存浮点寄存器的值。
+
+使用`SSE`配置选项来开启对SSEx指令的支持。
+
+### 示例：执行浮点数运算
+
+下面的代码说明了函数如果使用浮点运算来避免在对一组整数进行平均值计算时的溢出问题。需要注意的时，如果内核配置正确的话，并不需要特殊的额外代码。
+
+```
+int average(int *values, int num_values)
+{
+    double sum;
+    int i;
+
+    sum = 0.0;
+
+    for (i = 0; i < num_values; i++) {
+        sum += *values;
+        values++;
+    }
+
+    return (int)((sum / num_values) + 0.5);
+}
+```
+
+## API
+
+下面的浮点数服务API由`microkernel.h`和`nanokernel.h`头文件导出。
+
+`fiber_float_enable()`
+
+通知内核某个指明的任务或线现在是一个FPU用户或SSE用户。
+
+`task_float_enable()`
+
+通知内核某个指明的任务或线现在是一个FPU用户或SSE用户。
+
+`fiber_float_disable()`
+
+通知内核某个指明的任务或线现在不再是一个FPU用户或SSE用户。
+
+`task_float_disable()`
+
+通知内核某个指明的任务或线现在不再是一个FPU用户或SSE用户。
 
