@@ -95,5 +95,120 @@
 
 ## 使用方法
 
+### 定义一个线
+
+在创建线时必须指定以下属性：
+
+`stack_name`
+
+该属性指明了线的栈和其他执行上下文所使用的内存区域。为了保证内存对齐，应该使用如下的形式：
+
+```
+char __stack <stack_name>[<stack_size>];
+```
+
+`stack_size`
+
+该属性指明了_stack_name_内存区域的大小，单位为字节。
+
+`entry_point`
+
+该属性指明了线的入口函数名称，入口函数应具有以下的形式：
+
+```
+void <entry_point>(int arg1, int arg2)
+{
+    /* fiber mainline processing */
+    ...
+    /* (optional) normal fiber termination */
+    return;
+}
+```
+
+参数：
+
+参数时在线开始执行时传递给入口函数的两个参数。非整形参数能够强转为整形后传递给入口函数。
+
+优先级：
+
+指明了线调度时的优先级。
+
+选项：
+
+线的选项。
+
+### 示例：从一个任务中创建线
+
+下面的代码展示了当前执行的任务能够创建多个线，每一个线专门处理来自不同通信信道的数据。
+
+```
+#define COMM_STACK_SIZE    512
+#define NUM_COMM_CHANNELS  8
+
+struct descriptor {
+    ...;
+};
+
+char __stack comm_stack[NUM_COMM_CHANNELS][COMM_STACK_SIZE];
+struct descriptor comm_desc[NUM_COMM_CHANNELS] = { ... };
+
+...
+
+void comm_fiber(int desc_arg, int unused);
+{
+    ARG_UNUSED(unused);
+
+    struct descriptor  *desc = (struct descriptor *) desc_arg;
+
+    while (1) {
+        /* process packet of data from comm channel */
+
+        ...
+    }
+}
+
+void comm_main(void)
+{
+    ...
+
+    for (int i = 0; i < NUM_COMM_CHANNELS; i++) {
+        task_fiber_start(&comm_stack[i][0], COMM_STACK_SIZE,
+                         comm_fiber, (int) &comm_desc[i], 0,
+                         10, 0);
+    }
+
+    ...
+}
+```
+
+## API
+
+下面的API会影响当前执行的线，它们在`microkernel.h`和`nanokernel.h`中被导出：
+
+`fiber_yield()`
+
+将CPU让给更高优先级或相同优先级的线。
+
+`fiber_sleep()`
+
+让出CPU一个指定的时间。
+
+`fiber_abort()`
+
+终止线的执行。
+
+下面的API会影响指定的线，它们在`microkernel.h`和`nanokernel.h`导出。
+
+`task_fiber_start()`, `fiber_fiber_start()`, `fiber_start()`
+
+创建一个新的线。
+
+`task_fiber_delayed_start()`, `fiber_fiber_delayed_start()`, `fiber_delayed_start()`
+
+在指定的时间后创建一个线。
+
+`task_fiber_delayed_start_cancel()`, `fiber_fiber_delayed_start_cancel()`, `fiber_delayed_start_cancel()`
+
+如果线还没有开始运行，则取消它的运行。
 
 
