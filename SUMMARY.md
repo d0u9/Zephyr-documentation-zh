@@ -11,5 +11,6 @@
         * [构建和运行Zephyr应用](getting_started/getting_started_guide/building_and_running_an_application.md)
     * [Zephyr基础](getting_started/zephyr_kernel_primer/README.md)
         * [总览](getting_started/zephyr_kernel_primer/overview.md)
-	    * [系统基础](getting_started/zephyr_kernel_primer/system_fundamentals.md)
+            * [系统基础](getting_started/zephyr_kernel_primer/system_fundamentals.md)
+            * [内核基础](getting_started/zephyr_kernel_primer/kernel_fundamentals.md)
 
