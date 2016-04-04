@@ -9,7 +9,7 @@
 使用如下步骤来构建一个示例应用：
 
 1. 切换工作目录为Zephyr工程的根目录。
-2. 在每个控制台上设置环境变量，见[设置项目的环境变量](getting_started_guide/development_environment_setup_on_linux.md#设置项目的环境变量)
+2. 在每个控制台上设置环境变量，见[设置项目的环境变量](development_environment_setup_on_linux.md#设置项目的环境变量)
 3. 使用如下命令构建示例工程：
 
 ```
