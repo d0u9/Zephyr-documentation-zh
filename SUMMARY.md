@@ -10,4 +10,4 @@
 * [Zephyr基础](zephyr_kernel_primer/README.md)
     * [总览](zephyr_kernel_primer/overview.md)
         * [系统基础](zephyr_kernel_primer/system_fundamentals.md)
-        * [内核基础](getting_started/zephyr_kernel_primer/kernel_fundamentals.md)
+        * [内核基础](zephyr_kernel_primer/kernel_fundamentals.md)
