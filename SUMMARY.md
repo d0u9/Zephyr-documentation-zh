@@ -18,3 +18,8 @@
         * [内核时钟](zephyr_kernel_primer/kernel_clocks.md)
         * [原子操作服务](zephyr_kernel_primer/atomic_services.md)
         * [浮点服务](zephyr_kernel_primer/floating_point_services.md)
+    * [纳内核服务](zephyr_kernel_primer/nanokernel_services.md)
+        * [任务服务](zephyr_kernel_primer/task_services.md)
+        * [线服务](zephyr_kernel_primer/fiber_services.md)
+        * [定时服务](zephyr_kernel_primer/timer_services.md)
+

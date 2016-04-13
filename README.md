@@ -34,6 +34,10 @@ Zephyr项目是为资源受限的多种计算机架构所设计的一个微型�
         * [内核时钟](zephyr_kernel_primer/kernel_clocks.md)
         * [原子操作服务](zephyr_kernel_primer/atomic_services.md)
         * [浮点服务](zephyr_kernel_primer/floating_point_services.md)
+    * [纳内核服务](nanokernel_services.md)
+        * [任务服务](task_services.md)
+        * [线服务](fiber_services.md)
+        * [定时服务](timer_services.md)
 
 ## 本翻译项目的初衷
 
